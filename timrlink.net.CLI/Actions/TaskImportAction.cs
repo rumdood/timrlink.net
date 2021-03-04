@@ -75,11 +75,13 @@ namespace timrlink.net.CLI.Actions
             {   
                 var taskTokens = entry.Task.Split("|");
                 var parentTaskTokens = taskTokens.SkipLast(1).ToList();
-                var uuid = await AddTaskTreeRecursive(null, null, parentTaskTokens);
+               
 
                 var task = new Core.API.Task();
 
-                var existingTasks = tasks.Where(task => task.externalId == entry.ExternalId);
+                var existingTasks = tasks
+                    .Where(task => !String.IsNullOrEmpty(entry.ExternalId))
+                    .Where(task => task.externalId == entry.ExternalId);
 
                 if (existingTasks.Count() > 1)
                 {
@@ -87,13 +89,17 @@ namespace timrlink.net.CLI.Actions
                     continue;
                 }
 
-                var existingCSVTAsks = csvEntries.Where(task => task.ExternalId == entry.ExternalId);
+                var existingCSVTAsks = csvEntries
+                    .Where(task => !String.IsNullOrEmpty(entry.ExternalId))
+                    .Where(task => task.ExternalId == entry.ExternalId);
                 
                 if (existingCSVTAsks.Count() > 1)
                 {
                     Logger.LogError($"Duplicate Tasks with ExternalId {entry.ExternalId} in CSV file found. Skipping.");
                     continue;
                 }
+                
+                var uuid = await AddTaskTreeRecursive(null, null, parentTaskTokens);
 
                 if (entry.ExternalId != null && existingTasks.Count() == 1)
                 {
