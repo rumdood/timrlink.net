@@ -39,7 +39,6 @@ namespace timrlink.net.CLI.Test
                 .Callback((IEnumerable<Core.API.ProjectTime> pts) => projectTimes.AddRange(pts));
 
             var taskServiceMock = new Mock<ITaskService>(MockBehavior.Loose);
-            taskServiceMock.Setup(service => service.CreateExternalIdDictionary(It.IsAny<IEnumerable<Task>>(), It.IsAny<Func<Task, string>>())).ReturnsAsync(new Dictionary<string, Task>());
             taskServiceMock
                 .Setup(service => service.GetTaskHierarchy())
                 .ReturnsAsync(new List<Task>());
@@ -123,7 +122,6 @@ namespace timrlink.net.CLI.Test
                 .Callback((IEnumerable<Core.API.ProjectTime> pts) => projectTimes.AddRange(pts));
 
             var taskServiceMock = new Mock<ITaskService>(MockBehavior.Loose);
-            taskServiceMock.Setup(service => service.CreateExternalIdDictionary(It.IsAny<IEnumerable<Task>>(), It.IsAny<Func<Task, string>>())).ReturnsAsync(new Dictionary<string, Task>());
             taskServiceMock
                 .Setup(service => service.GetTaskHierarchy())
                 .ReturnsAsync(new List<Task>());
@@ -207,7 +205,6 @@ namespace timrlink.net.CLI.Test
                 .Callback((IEnumerable<Core.API.ProjectTime> pts) => projectTimes.AddRange(pts));
 
             var taskServiceMock = new Mock<ITaskService>(MockBehavior.Loose);
-            taskServiceMock.Setup(service => service.CreateExternalIdDictionary(It.IsAny<IEnumerable<Task>>(), It.IsAny<Func<Task, string>>())).ReturnsAsync(new Dictionary<string, Task>());
             taskServiceMock
                 .Setup(service => service.GetTaskHierarchy())
                 .ReturnsAsync(new List<Task>());
@@ -276,7 +273,6 @@ namespace timrlink.net.CLI.Test
                 .Callback((IEnumerable<Core.API.ProjectTime> pts) => projectTimes.AddRange(pts));
 
             var taskServiceMock = new Mock<ITaskService>(MockBehavior.Loose);
-            taskServiceMock.Setup(service => service.CreateExternalIdDictionary(It.IsAny<IEnumerable<Task>>(), It.IsAny<Func<Task, string>>())).ReturnsAsync(new Dictionary<string, Task>());
             taskServiceMock
                 .Setup(service => service.GetTaskHierarchy())
                 .ReturnsAsync(new List<Task>());
