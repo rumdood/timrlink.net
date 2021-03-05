@@ -75,8 +75,7 @@ namespace timrlink.net.CLI.Actions
             {   
                 var taskTokens = entry.Task.Split("|");
                 var parentTaskTokens = taskTokens.SkipLast(1).ToList();
-               
-
+                
                 var task = new Core.API.Task();
 
                 var existingTasks = tasks
@@ -123,10 +122,13 @@ namespace timrlink.net.CLI.Actions
                 task.customField2 = entry.CustomField2;
                 task.customField3 = entry.CustomField3;
                 task.parentUuid = uuid;
+                
+                // Set or update externalID when specified
                 if (!String.IsNullOrEmpty(entry.ExternalId))
                 {
                     task.externalId = entry.ExternalId;
                 }
+                
                 if (task.uuid == null)
                 {
                     task.uuid = Guid.NewGuid().ToString();
